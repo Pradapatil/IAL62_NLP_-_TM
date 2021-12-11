@@ -1,0 +1,1162 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={NLP\_Final\_Project},
+  pdfauthor={Pradnya Patil},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{NLP\_Final\_Project}
+\author{Pradnya Patil}
+\date{12/10/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{r-markdown}{%
+\subsection{R Markdown}\label{r-markdown}}
+
+This is an R Markdown document. Markdown is a simple formatting syntax
+for authoring HTML, PDF, and MS Word documents. For more details on
+using R Markdown see \url{http://rmarkdown.rstudio.com}.
+
+When you click the \textbf{Knit} button a document will be generated
+that includes both content as well as the output of any embedded R code
+chunks within the document. You can embed an R code chunk like this:
+
+\hypertarget{r}{%
+\subsection{R}\label{r}}
+
+\hypertarget{data-scrapping-and-wrangling-method-for-water-reports-and-news.}{%
+\section{Data Scrapping and Wrangling Method for water Reports and
+News.}\label{data-scrapping-and-wrangling-method-for-water-reports-and-news.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.7
+## v tidyr   1.1.4     v stringr 1.4.0
+## v readr   2.1.0     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidytext)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(keras)}
+\FunctionTok{library}\NormalTok{(tensorflow)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(tfdatasets)}
+\FunctionTok{library}\NormalTok{(reticulate)}
+\FunctionTok{library}\NormalTok{(reprex)}
+\FunctionTok{library}\NormalTok{(readr)}
+
+\CommentTok{\# read in csv file as tibble/data frame}
+\NormalTok{scrape.data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\AttributeTok{file=}\StringTok{\textquotesingle{}Water\_Report\&News.csv\textquotesingle{}}\NormalTok{, }\AttributeTok{stringsAsFactors=}\ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# Missing Value Visualization}
+\NormalTok{scrape.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{is.na}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  reshape2}\SpecialCharTok{::}\FunctionTok{melt}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(Var2, Var1, }\AttributeTok{fill=}\NormalTok{value)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_raster}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\ConstantTok{NULL}\NormalTok{, }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_grey}\NormalTok{(}\AttributeTok{name =} \StringTok{""}\NormalTok{,}
+                  \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Present"}\NormalTok{,}
+                             \StringTok{"Missing"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Observation"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.y  =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{6}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Missing Values Visualization"}\NormalTok{,}
+       \AttributeTok{caption =} \StringTok{"Figure 1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#}
+\NormalTok{scrape.data1 }\OtherTok{\textless{}{-}}\NormalTok{ scrape.data[, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{)]}
+
+\NormalTok{clean.data }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(scrape.data1)}
+
+
+\CommentTok{\# transform table into one{-}word{-}per{-}line tidytext format}
+\NormalTok{clean.data }\OtherTok{\textless{}{-}}\NormalTok{ clean.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest\_tokens}\NormalTok{(word, value)}
+
+\CommentTok{\# most frequent words}
+\NormalTok{clean.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(word, }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 815 x 2
+##    word      n
+##    <chr> <int>
+##  1 the     181
+##  2 of      167
+##  3 in       81
+##  4 and      73
+##  5 to       52
+##  6 is       51
+##  7 basin    27
+##  8 from     26
+##  9 water    23
+## 10 with     23
+## # ... with 805 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# remove stop words}
+\FunctionTok{data}\NormalTok{(stop\_words)}
+\NormalTok{clean.data }\OtherTok{\textless{}{-}}\NormalTok{ clean.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{anti\_join}\NormalTok{(stop\_words)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "word"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# check result of stop word removal}
+\NormalTok{clean.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(word, }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 651 x 2
+##    word            n
+##    <chr>       <int>
+##  1 basin          27
+##  2 water          23
+##  3 nitrogen       20
+##  4 bug            19
+##  5 southern       18
+##  6 â              17
+##  7 wastewater     17
+##  8 river          16
+##  9 waters         12
+## 10 khmelnitsky    11
+## # ... with 641 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# remove numbers {-}{-} NOT from *Text Mining with R*}
+\NormalTok{nums }\OtherTok{\textless{}{-}}\NormalTok{ clean.data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\FunctionTok{str\_detect}\NormalTok{(word, }\StringTok{"\^{}[0{-}9]"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(word) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{unique}\NormalTok{()}
+
+\NormalTok{clean.data }\OtherTok{\textless{}{-}}\NormalTok{ clean.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{anti\_join}\NormalTok{(nums, }\AttributeTok{by =} \StringTok{"word"}\NormalTok{)}
+
+\CommentTok{\# remove other words {-}{-} NOT from *Text Mining with R*}
+\NormalTok{uni\_sw }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{word =} \FunctionTok{c}\NormalTok{(}\StringTok{"2011"}\NormalTok{,}\StringTok{"khmelnitsky"}\NormalTok{, }\StringTok{"rights"}\NormalTok{, }\StringTok{"â"}\NormalTok{))}
+
+\NormalTok{clean.data }\OtherTok{\textless{}{-}}\NormalTok{ clean.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{anti\_join}\NormalTok{(uni\_sw, }\AttributeTok{by =} \StringTok{"word"}\NormalTok{)}
+
+\CommentTok{\# visualize top words in corpus}
+\NormalTok{plo1 }\OtherTok{\textless{}{-}}\NormalTok{ clean.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(word, }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(n }\SpecialCharTok{\textgreater{}} \DecValTok{12}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{word =} \FunctionTok{reorder}\NormalTok{(word, n)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(word, n,}\AttributeTok{fill=}\NormalTok{word), ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Top Words used in Report and News"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{()}
+\NormalTok{plo1}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\hypertarget{visualizations-of-the-target-variables}{%
+\subsection{Visualizations of the target
+variables}\label{visualizations-of-the-target-variables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(scrape.data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{env\_problems)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"gold"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Enviorment Problem Count"}\NormalTok{, }\AttributeTok{x =} \StringTok{"env\_problems"}\NormalTok{)}
+\NormalTok{plot2}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot3 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(scrape.data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{pollution)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Pollution Problem Count"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Pollution"}\NormalTok{)}
+\NormalTok{plot3}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot4 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(scrape.data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{treatment)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Treatment Count"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Treatment"}\NormalTok{)}
+\NormalTok{plot4}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot5 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(scrape.data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{climate)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"green"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Climate Problem Count"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Climate"}\NormalTok{)}
+\NormalTok{plot5}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot6 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(scrape.data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{biomonitoring)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Biomonitoring Count"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Biomonitoring"}\NormalTok{)}
+\NormalTok{plot6}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-7-1.pdf}
+\#\#\# Next Part
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(tidytext)}
+\FunctionTok{library}\NormalTok{(lubridate)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'lubridate'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# install.packages("textdata")}
+\FunctionTok{library}\NormalTok{(textdata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'textdata'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:keras':
+## 
+##     dataset_imdb
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{ (stringr)}
+\CommentTok{\#install.packages("remotes")}
+\CommentTok{\#remotes::install\_github("Displayr/flipTime")}
+\FunctionTok{library}\NormalTok{(flipTime)}
+
+\CommentTok{\# read in csv file as tibble/data frame}
+\NormalTok{scrape.data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\AttributeTok{file=}\StringTok{\textquotesingle{}Water\_Report\&News.csv\textquotesingle{}}\NormalTok{, }\AttributeTok{stringsAsFactors=}\ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\#scrape.data1 \textless{}{-} scrape.data[, c(1)]}
+
+\NormalTok{clean.data }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(scrape.data)}
+
+\CommentTok{\# uses lubridate package to convert UTC datetime format}
+\NormalTok{clean.data}\SpecialCharTok{$}\NormalTok{text }\OtherTok{\textless{}{-}} \FunctionTok{str\_replace\_all}\NormalTok{(clean.data}\SpecialCharTok{$}\NormalTok{text,}\StringTok{"â€“"}\NormalTok{,}\StringTok{""}\NormalTok{)}
+\NormalTok{clean.data}\SpecialCharTok{$}\NormalTok{text }\OtherTok{\textless{}{-}} \FunctionTok{str\_replace\_all}\NormalTok{(clean.data}\SpecialCharTok{$}\NormalTok{text,}\StringTok{"(Pic. 2.24)"}\NormalTok{,}\StringTok{""}\NormalTok{)}
+\NormalTok{clean.data}\SpecialCharTok{$}\NormalTok{text }\OtherTok{\textless{}{-}} \FunctionTok{str\_replace\_all}\NormalTok{(clean.data}\SpecialCharTok{$}\NormalTok{text,}\StringTok{"â€œBOSâ€"}\NormalTok{,}\StringTok{""}\NormalTok{)}
+\CommentTok{\#unique(clean.data$text)}
+
+
+\CommentTok{\# capture negative sentiments for bing lexicon}
+\CommentTok{\# chapter 2.2 Text Mining with R}
+\NormalTok{bing.negative }\OtherTok{\textless{}{-}} \FunctionTok{get\_sentiments}\NormalTok{(}\StringTok{"bing"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(sentiment }\SpecialCharTok{==} \StringTok{"negative"}\NormalTok{)}
+
+\NormalTok{bing.negative}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4,781 x 2
+##    word        sentiment
+##    <chr>       <chr>    
+##  1 2-faces     negative 
+##  2 abnormal    negative 
+##  3 abolish     negative 
+##  4 abominable  negative 
+##  5 abominably  negative 
+##  6 abominate   negative 
+##  7 abomination negative 
+##  8 abort       negative 
+##  9 aborted     negative 
+## 10 aborts      negative 
+## # ... with 4,771 more rows
+\end{verbatim}
+
+\hypertarget{section}{%
+\subsubsection{}\label{section}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# tokenizing bigrams}
+\CommentTok{\# chapter 4.1.3 Text Mining with R}
+\NormalTok{bigrams }\OtherTok{\textless{}{-}}\NormalTok{ scrape.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest\_tokens}\NormalTok{(bigram, text, }\AttributeTok{token =} \StringTok{"ngrams"}\NormalTok{, }\AttributeTok{n =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# separating bigrams into two columns}
+\CommentTok{\# chapter 4.1.3 Text Mining with R}
+\NormalTok{bigrams.separated }\OtherTok{\textless{}{-}}\NormalTok{ bigrams }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{separate}\NormalTok{(bigram, }\FunctionTok{c}\NormalTok{(}\StringTok{"word1"}\NormalTok{, }\StringTok{"word2"}\NormalTok{), }\AttributeTok{sep =} \StringTok{" "}\NormalTok{)}
+
+\CommentTok{\# calling the AFINN lexicon for sentiment analysis}
+\CommentTok{\# chapter 4.1.3 Text Mining with R}
+\NormalTok{AFINN }\OtherTok{\textless{}{-}} \FunctionTok{get\_sentiments}\NormalTok{(}\StringTok{"afinn"}\NormalTok{)}
+
+\CommentTok{\# analyzing the most frequent words preceded by "not"}
+\CommentTok{\# chapter 4.1.3 Text Mining with R}
+\NormalTok{not.words }\OtherTok{\textless{}{-}}\NormalTok{ bigrams.separated }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(word1 }\SpecialCharTok{==} \StringTok{"not"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{inner\_join}\NormalTok{(AFINN, }\AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\AttributeTok{word2 =} \StringTok{"word"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(word2, value, }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# explore}
+\CommentTok{\# chapter 4.1.3 Text Mining with R}
+\NormalTok{not.words}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   word2 value n
+## 1 allow     1 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# visualize "not" words}
+\CommentTok{\# figure 4.2 Text Mining with R}
+\NormalTok{not.words }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{contribution =}\NormalTok{ n }\SpecialCharTok{*}\NormalTok{ value) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(}\FunctionTok{abs}\NormalTok{(contribution))) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{20}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{word2 =} \FunctionTok{reorder}\NormalTok{(word2, contribution)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(word2, n }\SpecialCharTok{*}\NormalTok{ value, }\AttributeTok{fill =}\NormalTok{ n }\SpecialCharTok{*}\NormalTok{ value }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Words preceded by }\SpecialCharTok{\textbackslash{}"}\StringTok{not}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ylab}\NormalTok{(}\StringTok{"Sentiment value * number of occurrences"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-9-1.pdf}
+\#\#\#
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(tidytext)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(tm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: NLP
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'NLP'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ggplot2':
+## 
+##     annotate
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(stringr)}
+\FunctionTok{library}\NormalTok{(igraph)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'igraph'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:lubridate':
+## 
+##     %--%, union
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:keras':
+## 
+##     %<-%, normalize
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:dplyr':
+## 
+##     as_data_frame, groups, union
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:purrr':
+## 
+##     compose, simplify
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:tidyr':
+## 
+##     crossing
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:tibble':
+## 
+##     as_data_frame
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     decompose, spectrum
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:base':
+## 
+##     union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggraph)}
+\FunctionTok{library}\NormalTok{(widyr)}
+
+\CommentTok{\# read in csv file as tibble/data frame}
+\NormalTok{scrape.data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\AttributeTok{file=}\StringTok{\textquotesingle{}Water\_Report\&News.csv\textquotesingle{}}\NormalTok{, }\AttributeTok{stringsAsFactors=}\ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\#scrape.data1 \textless{}{-} scrape.data[, c(1)]}
+
+\NormalTok{scrape.data }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(scrape.data)}
+
+\CommentTok{\# removes carrige returns and new lines from text}
+\NormalTok{scrape.data}\SpecialCharTok{$}\NormalTok{text }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}r}\StringTok{?}\SpecialCharTok{\textbackslash{}n}\StringTok{|}\SpecialCharTok{\textbackslash{}r}\StringTok{"}\NormalTok{, }\StringTok{" "}\NormalTok{, scrape.data}\SpecialCharTok{$}\NormalTok{text)}
+
+\CommentTok{\# removes punctuation}
+\NormalTok{scrape.data}\SpecialCharTok{$}\NormalTok{text }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"[[:punct:]]"}\NormalTok{, }\StringTok{""}\NormalTok{, scrape.data}\SpecialCharTok{$}\NormalTok{text)}
+
+\CommentTok{\# forces entire corpus to lowercase}
+\NormalTok{scrape.data}\SpecialCharTok{$}\NormalTok{text }\OtherTok{\textless{}{-}} \FunctionTok{tolower}\NormalTok{(scrape.data}\SpecialCharTok{$}\NormalTok{text)}
+
+\CommentTok{\#removes numbers from text}
+\NormalTok{scrape.data}\SpecialCharTok{$}\NormalTok{text }\OtherTok{\textless{}{-}} \FunctionTok{removeNumbers}\NormalTok{(scrape.data}\SpecialCharTok{$}\NormalTok{text)}
+
+\CommentTok{\# remove stop words}
+\NormalTok{scrape.data}\SpecialCharTok{$}\NormalTok{text }\OtherTok{\textless{}{-}} \FunctionTok{removeWords}\NormalTok{(scrape.data}\SpecialCharTok{$}\NormalTok{text, }\FunctionTok{stopwords}\NormalTok{(}\StringTok{"SMART"}\NormalTok{))}
+
+\CommentTok{\# scrape.data$text}
+
+\CommentTok{\# remove additional words}
+\NormalTok{other.words }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"2011"}\NormalTok{,}\StringTok{"copyright"}\NormalTok{, }\StringTok{"rights"}\NormalTok{, }\StringTok{"u.s"}\NormalTok{)}
+
+\NormalTok{scrape.data}\SpecialCharTok{$}\NormalTok{text }\OtherTok{\textless{}{-}} \FunctionTok{removeWords}\NormalTok{(scrape.data}\SpecialCharTok{$}\NormalTok{text, other.words)}
+
+\CommentTok{\# removes additional remaining whitespace}
+\NormalTok{scrape.data}\SpecialCharTok{$}\NormalTok{text }\OtherTok{\textless{}{-}} \FunctionTok{stripWhitespace}\NormalTok{(scrape.data}\SpecialCharTok{$}\NormalTok{text)}
+
+\NormalTok{clean.data }\OtherTok{\textless{}{-}}\NormalTok{ scrape.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest\_tokens}\NormalTok{(word, text)}
+
+\NormalTok{clean.data }\OtherTok{\textless{}{-}}\NormalTok{ clean.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(word, }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{url.words }\OtherTok{\textless{}{-}}\NormalTok{ scrape.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest\_tokens}\NormalTok{(word, text) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(word, }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{total.words }\OtherTok{\textless{}{-}}\NormalTok{ url.words }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(word) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{total =} \FunctionTok{sum}\NormalTok{(n))}
+
+\NormalTok{url.words }\OtherTok{\textless{}{-}} \FunctionTok{left\_join}\NormalTok{(url.words, total.words)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "word"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{url.words }\OtherTok{\textless{}{-}}\NormalTok{ url.words }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{bind\_tf\_idf}\NormalTok{(word, n, total)}
+
+\NormalTok{url.words }\OtherTok{\textless{}{-}}\NormalTok{ url.words }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{total) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(tf\_idf))}
+
+\CommentTok{\# compare tf{-}idf to raw word frequencies for top 30 words}
+\FunctionTok{unique}\NormalTok{(url.words}\SpecialCharTok{$}\NormalTok{word[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "basin"       "water"       "part"        "wastewater"  "river"      
+##  [6] "waters"      "compounds"   "â"           "nitrogen"    "bug"        
+## [11] "southern"    "khmelnitsky" "wastewaters" "average"     "bodies"     
+## [16] "oc"          "temperature" "treatment"   "air"         "facilities" 
+## [21] "located"     "lower"       "year"        "discharges"  "due"        
+## [26] "kirovograd"  "tons"        "values"      "wwtps"       "amount"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{clean.data}\SpecialCharTok{$}\NormalTok{word[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "basin"       "water"       "part"        "â"           "nitrogen"   
+##  [6] "bug"         "southern"    "wastewater"  "river"       "waters"     
+## [11] "khmelnitsky" "wastewaters" "compounds"   "average"     "bodies"     
+## [16] "oc"          "temperature" "treatment"   "air"         "facilities" 
+## [21] "located"     "lower"       "year"        "discharges"  "due"        
+## [26] "kirovograd"  "tons"        "values"      "wwtps"       "amount"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# raw bigrams}
+\NormalTok{url.bigrams }\OtherTok{\textless{}{-}}\NormalTok{ scrape.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest\_tokens}\NormalTok{(bigram, text, }\AttributeTok{token =} \StringTok{"ngrams"}\NormalTok{, }\AttributeTok{n =} \DecValTok{2}\NormalTok{)}
+
+\NormalTok{url.bigrams }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(bigram, }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,035 x 2
+##    bigram                     n
+##    <chr>                  <int>
+##  1 southern bug              17
+##  2 bug basin                 11
+##  3 water bodies               9
+##  4 lower part                 6
+##  5 air temperature            5
+##  6 surface waters             5
+##  7 â mln                      4
+##  8 basin located              4
+##  9 khmelnitsky kirovograd     4
+## 10 mln users                  4
+## # ... with 1,025 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# tf{-}idf bigrams}
+\NormalTok{bigrams.separated }\OtherTok{\textless{}{-}}\NormalTok{ url.bigrams }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{separate}\NormalTok{(bigram, }\FunctionTok{c}\NormalTok{(}\StringTok{"word1"}\NormalTok{, }\StringTok{"word2"}\NormalTok{), }\AttributeTok{sep =} \StringTok{" "}\NormalTok{)}
+
+\NormalTok{bigram.tf.idf }\OtherTok{\textless{}{-}}\NormalTok{ url.bigrams }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(bigram, env\_problems) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{bind\_tf\_idf}\NormalTok{(bigram, env\_problems, n) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(tf\_idf))}
+
+\NormalTok{clean.data}\SpecialCharTok{$}\NormalTok{word[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "basin"       "water"       "part"        "â"           "nitrogen"   
+##  [6] "bug"         "southern"    "wastewater"  "river"       "waters"     
+## [11] "khmelnitsky" "wastewaters" "compounds"   "average"     "bodies"     
+## [16] "oc"          "temperature" "treatment"   "air"         "facilities" 
+## [21] "located"     "lower"       "year"        "discharges"  "due"        
+## [26] "kirovograd"  "tons"        "values"      "wwtps"       "amount"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{unique}\NormalTok{(url.words}\SpecialCharTok{$}\NormalTok{word[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "basin"       "water"       "part"        "wastewater"  "river"      
+##  [6] "waters"      "compounds"   "â"           "nitrogen"    "bug"        
+## [11] "southern"    "khmelnitsky" "wastewaters" "average"     "bodies"     
+## [16] "oc"          "temperature" "treatment"   "air"         "facilities" 
+## [21] "located"     "lower"       "year"        "discharges"  "due"        
+## [26] "kirovograd"  "tons"        "values"      "wwtps"       "amount"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bigram.tf.idf}\SpecialCharTok{$}\NormalTok{bigram[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "air temperature"        "basin located"          "part basin"            
+##  [4] "parts basin"            "â mln"                  "khmelnitsky kirovograd"
+##  [7] "mln users"              "phosphate ions"         "tons year"             
+## [10] "treatment facilities"   "wastewater treatment"   "annual air"            
+## [13] "average annual"         "basin makes"            "directive eu"          
+## [16] "middle parts"           "snow cover"             "upper middle"          
+## [19] "varies oc"              "main part"              "vinnistya khmelnitsky" 
+## [22] "wastewater facilities"  "black sea"              "catchment area"        
+## [25] "chemical status"        "makes mm"               "minimum temperature"   
+## [28] "mm mm"                  "moderately continental" "north south"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{count\_bigrams }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(dataset) \{}
+\NormalTok{  dataset }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{unnest\_tokens}\NormalTok{(bigram, text, }\AttributeTok{token =} \StringTok{"ngrams"}\NormalTok{, }\AttributeTok{n =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{separate}\NormalTok{(bigram, }\FunctionTok{c}\NormalTok{(}\StringTok{"word1"}\NormalTok{, }\StringTok{"word2"}\NormalTok{), }\AttributeTok{sep =} \StringTok{" "}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\NormalTok{word1 }\SpecialCharTok{\%in\%}\NormalTok{ stop\_words}\SpecialCharTok{$}\NormalTok{word,}
+           \SpecialCharTok{!}\NormalTok{word2 }\SpecialCharTok{\%in\%}\NormalTok{ stop\_words}\SpecialCharTok{$}\NormalTok{word) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{count}\NormalTok{(word1, word2, }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{\}}
+
+\NormalTok{visualize\_bigrams }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(bigrams) \{}
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{2016}\NormalTok{)}
+\NormalTok{  a }\OtherTok{\textless{}{-}}\NormalTok{ grid}\SpecialCharTok{::}\FunctionTok{arrow}\NormalTok{(}\AttributeTok{type =} \StringTok{"closed"}\NormalTok{, }\AttributeTok{length =} \FunctionTok{unit}\NormalTok{(.}\DecValTok{15}\NormalTok{, }\StringTok{"inches"}\NormalTok{))}
+  
+\NormalTok{  bigrams }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{graph\_from\_data\_frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{ggraph}\NormalTok{(}\AttributeTok{layout =} \StringTok{"fr"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_edge\_link}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{edge\_alpha =}\NormalTok{ n), }\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{arrow =}\NormalTok{ a) }\SpecialCharTok{+}
+    \FunctionTok{geom\_node\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{"lightblue"}\NormalTok{, }\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_node\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ name), }\AttributeTok{vjust =} \DecValTok{1}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{theme\_void}\NormalTok{()}
+\NormalTok{\}}
+
+\CommentTok{\# bring in your text data}
+\NormalTok{viz.bigrams }\OtherTok{\textless{}{-}}\NormalTok{ scrape.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count\_bigrams}\NormalTok{()}
+
+\CommentTok{\# filter out rare combinations, as well as digits}
+\NormalTok{viz.bigrams }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(n }\SpecialCharTok{\textgreater{}} \DecValTok{9}\NormalTok{,}
+         \SpecialCharTok{!}\FunctionTok{str\_detect}\NormalTok{(word1, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{d"}\NormalTok{),}
+         \SpecialCharTok{!}\FunctionTok{str\_detect}\NormalTok{(word2, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{d"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  
+  \CommentTok{\# display graph}
+  \FunctionTok{visualize\_bigrams}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# transform data to one{-}token{-}per{-}document{-}per{-}row}
+\NormalTok{clean.data2 }\OtherTok{\textless{}{-}}\NormalTok{ scrape.data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest\_tokens}\NormalTok{(word, text)}
+
+\CommentTok{\# count words co{-}occurring in web pages}
+\NormalTok{word\_cors }\OtherTok{\textless{}{-}}\NormalTok{ clean.data2 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(word) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\FunctionTok{n}\NormalTok{() }\SpecialCharTok{\textgreater{}=} \DecValTok{20}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pairwise\_cor}\NormalTok{(word,env\_problems,  }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{section-1}{%
+\subparagraph{}\label{section-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# read in csv file as tibble/data frame}
+\NormalTok{scrape.data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\AttributeTok{file=}\StringTok{\textquotesingle{}Water\_Report\&News.csv\textquotesingle{}}\NormalTok{, }\AttributeTok{stringsAsFactors=}\ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\#scrape.data1 \textless{}{-} scrape.data[, c(1)]}
+
+\NormalTok{clean.data }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(scrape.data)}
+
+\CommentTok{\# remove list of non{-}stop words that are common and hold no semantic value}
+\NormalTok{other.words }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"pm"}\NormalTok{,}\StringTok{"slowest"}\NormalTok{, }\StringTok{"city"}\NormalTok{, }\StringTok{"press"}\NormalTok{, }\StringTok{"pieces"}\NormalTok{, }\StringTok{"only"}\NormalTok{,}\StringTok{"exceed"}\NormalTok{, }\StringTok{"loading"}\NormalTok{, }\StringTok{"figure"}\NormalTok{, }\StringTok{"views"}\NormalTok{, }
+                 \StringTok{"post"}\NormalTok{, }\StringTok{"information"}\NormalTok{,}\StringTok{"monday"}\NormalTok{, }\StringTok{"tuesday"}\NormalTok{, }\StringTok{"wednesday"}\NormalTok{, }\StringTok{"thursday"}\NormalTok{, }\StringTok{"friday"}\NormalTok{, }\StringTok{"saturday"}\NormalTok{, }\StringTok{"sunday"}\NormalTok{)}
+
+\CommentTok{\# clean data}
+\NormalTok{clean.data }\OtherTok{\textless{}{-}} 
+\NormalTok{  clean.data}\SpecialCharTok{$}\NormalTok{text }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{removePunctuation}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{removeNumbers}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tolower}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{removeWords}\NormalTok{(}\FunctionTok{stopwords}\NormalTok{(}\StringTok{"SMART"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{removeWords}\NormalTok{(other.words) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{stripWhitespace}\NormalTok{()}
+
+\CommentTok{\# convert vector of scraped text to document term matrix using TM package}
+\NormalTok{scrape.dtm }\OtherTok{\textless{}{-}} \FunctionTok{VCorpus}\NormalTok{(}\FunctionTok{VectorSource}\NormalTok{(clean.data)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tm\_map}\NormalTok{(stemDocument) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tm\_map}\NormalTok{(stripWhitespace) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{DocumentTermMatrix}\NormalTok{()}
+\NormalTok{scrape.dtm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <<DocumentTermMatrix (documents: 100, terms: 493)>>
+## Non-/sparse entries: 1165/48135
+## Sparsity           : 98%
+## Maximal term length: 16
+## Weighting          : term frequency (tf)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(topicmodels)}
+
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# examples using scraped data and chapter 6.1.1 of Text Mining with R}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# create a 2{-}topic LDA model and set seed so that output is predictable}
+\NormalTok{scrape.lda }\OtherTok{\textless{}{-}} \FunctionTok{LDA}\NormalTok{(scrape.dtm, }\AttributeTok{k =} \DecValTok{2}\NormalTok{, }\AttributeTok{control =} \FunctionTok{list}\NormalTok{(}\AttributeTok{seed =} \DecValTok{1234}\NormalTok{))}
+
+\CommentTok{\# explore}
+\NormalTok{scrape.lda}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## A LDA_VEM topic model with 2 topics.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# extract per topic word probabilities}
+\NormalTok{scrape.topics }\OtherTok{\textless{}{-}} \FunctionTok{tidy}\NormalTok{(scrape.lda, }\AttributeTok{matrix =} \StringTok{"beta"}\NormalTok{)}
+
+\CommentTok{\# explore}
+\NormalTok{scrape.topics}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 986 x 3
+##    topic term                 beta
+##    <int> <chr>               <dbl>
+##  1     1 "â€“"            0.0231  
+##  2     2 "â€“"            0.00556 
+##  3     1 "â€œbosâ€\u009d" 0.00222 
+##  4     2 "â€œbosâ€\u009d" 0.000968
+##  5     1 "absolut"        0.000912
+##  6     2 "absolut"        0.000682
+##  7     1 "accid"          0.000674
+##  8     2 "accid"          0.000919
+##  9     1 "accident"       0.00147 
+## 10     2 "accident"       0.000119
+## # ... with 976 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# organize data according to \textquotesingle{}topic\textquotesingle{} for figure 6.2}
+\NormalTok{scrape.top.terms }\OtherTok{\textless{}{-}}\NormalTok{ scrape.topics }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(topic) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{top\_n}\NormalTok{(}\DecValTok{10}\NormalTok{, beta) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(topic, }\SpecialCharTok{{-}}\NormalTok{beta)}
+
+\CommentTok{\# vizualize top 2 topics and their top 10 terms}
+\CommentTok{\# figure 6.2 in Text Mining with R}
+\NormalTok{scrape.top.terms }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{term =} \FunctionTok{reorder\_within}\NormalTok{(term, beta, topic)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(term, beta, }\AttributeTok{fill =} \FunctionTok{factor}\NormalTok{(topic))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ topic, }\AttributeTok{scales =} \StringTok{"free"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_reordered}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# calculate beta spread for figure 6.3}
+\NormalTok{beta.spread }\OtherTok{\textless{}{-}}\NormalTok{ scrape.topics }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{topic =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"topic"}\NormalTok{, topic)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{spread}\NormalTok{(topic, beta) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(topic1 }\SpecialCharTok{\textgreater{}}\NormalTok{ .}\DecValTok{001} \SpecialCharTok{|}\NormalTok{ topic2 }\SpecialCharTok{\textgreater{}}\NormalTok{ .}\DecValTok{001}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{log\_ratio =} \FunctionTok{log2}\NormalTok{(topic2 }\SpecialCharTok{/}\NormalTok{ topic1))}
+
+\CommentTok{\# visualize words with greatest beta spread between 2 topics}
+\CommentTok{\# figure 6.3 in Text Mining with R}
+\NormalTok{beta.spread }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(}\AttributeTok{direction =}\NormalTok{ log\_ratio }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{top\_n}\NormalTok{(}\DecValTok{10}\NormalTok{, }\FunctionTok{abs}\NormalTok{(log\_ratio)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{term =} \FunctionTok{reorder}\NormalTok{(term, log\_ratio)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(term, log\_ratio)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{y =} \StringTok{"Log2 ratio of beta in topic 2 / topic 1"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-12-2.pdf}
+\#\#\#\#\#\#
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# decide number of topics intuitively or based on outside data}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# reusing code from chapter 6.1.1 in Text Mining with R}
+
+\CommentTok{\# set seed and select number of topics with \textquotesingle{}k\textquotesingle{}}
+\NormalTok{scrape.lda }\OtherTok{\textless{}{-}} \FunctionTok{LDA}\NormalTok{(scrape.dtm, }\AttributeTok{k =} \DecValTok{28}\NormalTok{, }\AttributeTok{control =} \FunctionTok{list}\NormalTok{(}\AttributeTok{seed =} \DecValTok{1234}\NormalTok{))}
+
+\CommentTok{\# extract per topic word probabilities}
+\NormalTok{scrape.topics }\OtherTok{\textless{}{-}} \FunctionTok{tidy}\NormalTok{(scrape.lda, }\AttributeTok{matrix =} \StringTok{"beta"}\NormalTok{)}
+
+\CommentTok{\# organize data according to \textquotesingle{}topic\textquotesingle{}}
+\NormalTok{scrape.top.terms }\OtherTok{\textless{}{-}}\NormalTok{ scrape.topics }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(topic) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{top\_n}\NormalTok{(}\DecValTok{5}\NormalTok{, beta) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(topic, }\SpecialCharTok{{-}}\NormalTok{beta)}
+
+\CommentTok{\# visualize top 5 terms for each topic}
+\NormalTok{scrape.top.terms }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{term =} \FunctionTok{reorder\_within}\NormalTok{(term, beta, topic)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(term, beta, }\AttributeTok{fill =} \FunctionTok{factor}\NormalTok{(topic))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ topic, }\AttributeTok{scales =} \StringTok{"free"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_reordered}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## width unknown for character 0x1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## font width unknown for character 0x9d
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## font width unknown for character 0x1
+
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## font width unknown for character 0x1
+\end{verbatim}
+
+\includegraphics{Final_Project_NLP_files/figure-latex/unnamed-chunk-13-1.pdf}
+\#\#\#\#
+
+\end{document}

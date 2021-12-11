@@ -1,0 +1,492 @@
+---
+title: "NLP_Final_Project"
+author: "Pradnya Patil"
+date: "12/10/2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+## R
+
+```{R Setup, echo=FALSE, message=TRUE, warning=TRUE}
+library(rmarkdown)
+```
+
+# Data Scrapping and Wrangling Method for water Reports and News.
+
+```{r}
+
+library(tidyverse)
+library(tidytext)
+library(ggplot2)
+library(keras)
+library(tensorflow)
+library(dplyr)
+library(tfdatasets)
+library(reticulate)
+library(reprex)
+library(readr)
+
+# read in csv file as tibble/data frame
+scrape.data <- read.csv(file='Water_Report&News.csv', stringsAsFactors=FALSE)
+
+# Missing Value Visualization
+scrape.data %>%
+  is.na() %>%
+  reshape2::melt() %>%
+  ggplot(aes(Var2, Var1, fill=value)) +
+  geom_raster() +
+  coord_flip() +
+  scale_y_continuous(NULL, expand = c(0, 0)) +
+  scale_fill_grey(name = "",
+                  labels = c("Present",
+                             "Missing")) +
+  xlab("Observation") +
+  theme(axis.text.y  = element_text(size = 6)) +
+  labs(title = "Missing Values Visualization",
+       caption = "Figure 1")
+
+
+
+```
+
+```{r}
+###
+scrape.data1 <- scrape.data[, c(1)]
+
+clean.data <- as_tibble(scrape.data1)
+
+
+# transform table into one-word-per-line tidytext format
+clean.data <- clean.data %>%
+  unnest_tokens(word, value)
+
+# most frequent words
+clean.data %>%
+  count(word, sort = TRUE)
+
+# remove stop words
+data(stop_words)
+clean.data <- clean.data %>%
+  anti_join(stop_words)
+
+# check result of stop word removal
+clean.data %>%
+  count(word, sort = TRUE)
+
+# remove numbers -- NOT from *Text Mining with R*
+nums <- clean.data %>% filter(str_detect(word, "^[0-9]")) %>% select(word) %>% unique()
+
+clean.data <- clean.data %>%
+  anti_join(nums, by = "word")
+
+# remove other words -- NOT from *Text Mining with R*
+uni_sw <- data.frame(word = c("2011","khmelnitsky", "rights", "â"))
+
+clean.data <- clean.data %>%
+  anti_join(uni_sw, by = "word")
+
+# visualize top words in corpus
+plo1 <- clean.data %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 12) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n,fill=word), ) +
+  geom_col() +
+  xlab(NULL) +
+  labs(title = "Top Words used in Report and News")+
+  coord_flip()
+plo1
+
+```
+
+## Visualizations of the target variables
+
+```{R}
+plot2 <- ggplot(scrape.data, aes(x=env_problems)) + geom_bar(fill = "gold") +
+  labs(title = "Enviorment Problem Count", x = "env_problems")
+plot2
+
+```
+
+```{r}
+plot3 <- ggplot(scrape.data, aes(x=pollution)) + geom_bar(fill = "red") +
+  labs(title = "Pollution Problem Count", x = "Pollution")
+plot3
+```
+
+```{r}
+plot4 <- ggplot(scrape.data, aes(x=treatment)) + geom_bar(fill = "blue") +
+  labs(title = "Treatment Count", x = "Treatment")
+plot4
+```
+```{r}
+plot5 <- ggplot(scrape.data, aes(x=climate)) + geom_bar(fill = "green") +
+  labs(title = "Climate Problem Count", x = "Climate")
+plot5
+
+```
+```{r}
+plot6 <- ggplot(scrape.data, aes(x=biomonitoring)) + geom_bar(fill = "black") +
+  labs(title = "Biomonitoring Count", x = "Biomonitoring")
+plot6
+
+```
+### Next Part
+
+```{R}
+library(tidyverse)
+library(tidytext)
+library(lubridate)
+# install.packages("textdata")
+library(textdata)
+library (stringr)
+#install.packages("remotes")
+#remotes::install_github("Displayr/flipTime")
+library(flipTime)
+
+# read in csv file as tibble/data frame
+scrape.data <- read.csv(file='Water_Report&News.csv', stringsAsFactors=FALSE)
+
+#scrape.data1 <- scrape.data[, c(1)]
+
+clean.data <- as_tibble(scrape.data)
+
+# uses lubridate package to convert UTC datetime format
+clean.data$text <- str_replace_all(clean.data$text,"â€“","")
+clean.data$text <- str_replace_all(clean.data$text,"(Pic. 2.24)","")
+clean.data$text <- str_replace_all(clean.data$text,"â€œBOSâ€","")
+#unique(clean.data$text)
+
+
+# capture negative sentiments for bing lexicon
+# chapter 2.2 Text Mining with R
+bing.negative <- get_sentiments("bing") %>%
+  filter(sentiment == "negative")
+
+bing.negative
+
+
+```
+###
+
+```{r}
+# tokenizing bigrams
+# chapter 4.1.3 Text Mining with R
+bigrams <- scrape.data %>%
+  unnest_tokens(bigram, text, token = "ngrams", n = 2)
+
+# separating bigrams into two columns
+# chapter 4.1.3 Text Mining with R
+bigrams.separated <- bigrams %>%
+  separate(bigram, c("word1", "word2"), sep = " ")
+
+# calling the AFINN lexicon for sentiment analysis
+# chapter 4.1.3 Text Mining with R
+AFINN <- get_sentiments("afinn")
+
+# analyzing the most frequent words preceded by "not"
+# chapter 4.1.3 Text Mining with R
+not.words <- bigrams.separated %>%
+  filter(word1 == "not") %>%
+  inner_join(AFINN, by = c(word2 = "word")) %>%
+  count(word2, value, sort = TRUE)
+
+# explore
+# chapter 4.1.3 Text Mining with R
+not.words
+
+# visualize "not" words
+# figure 4.2 Text Mining with R
+not.words %>%
+  mutate(contribution = n * value) %>%
+  arrange(desc(abs(contribution))) %>%
+  head(20) %>%
+  mutate(word2 = reorder(word2, contribution)) %>%
+  ggplot(aes(word2, n * value, fill = n * value > 0)) +
+  geom_col(show.legend = FALSE) +
+  xlab("Words preceded by \"not\"") +
+  ylab("Sentiment value * number of occurrences") +
+  coord_flip()
+
+```
+###
+
+
+```{r}
+
+library(tidyverse)
+library(tidytext)
+library(ggplot2)
+library(tm)
+library(stringr)
+library(igraph)
+library(ggraph)
+library(widyr)
+
+# read in csv file as tibble/data frame
+scrape.data <- read.csv(file='Water_Report&News.csv', stringsAsFactors=FALSE)
+
+#scrape.data1 <- scrape.data[, c(1)]
+
+scrape.data <- as_tibble(scrape.data)
+
+# removes carrige returns and new lines from text
+scrape.data$text <- gsub("\r?\n|\r", " ", scrape.data$text)
+
+# removes punctuation
+scrape.data$text <- gsub("[[:punct:]]", "", scrape.data$text)
+
+# forces entire corpus to lowercase
+scrape.data$text <- tolower(scrape.data$text)
+
+#removes numbers from text
+scrape.data$text <- removeNumbers(scrape.data$text)
+
+# remove stop words
+scrape.data$text <- removeWords(scrape.data$text, stopwords("SMART"))
+
+# scrape.data$text
+
+# remove additional words
+other.words <- c("2011","copyright", "rights", "u.s")
+
+scrape.data$text <- removeWords(scrape.data$text, other.words)
+
+# removes additional remaining whitespace
+scrape.data$text <- stripWhitespace(scrape.data$text)
+
+clean.data <- scrape.data %>%
+  unnest_tokens(word, text)
+
+clean.data <- clean.data %>%
+  count(word, sort = TRUE)
+
+url.words <- scrape.data %>%
+  unnest_tokens(word, text) %>%
+  count(word, sort = TRUE)
+
+total.words <- url.words %>%
+  group_by(word) %>%
+  summarize(total = sum(n))
+
+url.words <- left_join(url.words, total.words)
+
+url.words <- url.words %>%
+  bind_tf_idf(word, n, total)
+
+url.words <- url.words %>%
+  select(-total) %>%
+  arrange(desc(tf_idf))
+
+# compare tf-idf to raw word frequencies for top 30 words
+unique(url.words$word[1:30])
+clean.data$word[1:30]
+
+# raw bigrams
+url.bigrams <- scrape.data %>%
+  unnest_tokens(bigram, text, token = "ngrams", n = 2)
+
+url.bigrams %>%
+  count(bigram, sort = TRUE)
+
+# tf-idf bigrams
+bigrams.separated <- url.bigrams %>%
+  separate(bigram, c("word1", "word2"), sep = " ")
+
+bigram.tf.idf <- url.bigrams %>%
+  count(bigram, env_problems) %>%
+  bind_tf_idf(bigram, env_problems, n) %>%
+  arrange(desc(tf_idf))
+
+clean.data$word[1:30]
+unique(url.words$word[1:30])
+bigram.tf.idf$bigram[1:30]
+
+count_bigrams <- function(dataset) {
+  dataset %>%
+    unnest_tokens(bigram, text, token = "ngrams", n = 2) %>%
+    separate(bigram, c("word1", "word2"), sep = " ") %>%
+    filter(!word1 %in% stop_words$word,
+           !word2 %in% stop_words$word) %>%
+    count(word1, word2, sort = TRUE)
+}
+
+visualize_bigrams <- function(bigrams) {
+  set.seed(2016)
+  a <- grid::arrow(type = "closed", length = unit(.15, "inches"))
+  
+  bigrams %>%
+    graph_from_data_frame() %>%
+    ggraph(layout = "fr") +
+    geom_edge_link(aes(edge_alpha = n), show.legend = FALSE, arrow = a) +
+    geom_node_point(color = "lightblue", size = 5) +
+    geom_node_text(aes(label = name), vjust = 1, hjust = 1) +
+    theme_void()
+}
+
+# bring in your text data
+viz.bigrams <- scrape.data %>%
+  count_bigrams()
+
+# filter out rare combinations, as well as digits
+viz.bigrams %>%
+  filter(n > 9,
+         !str_detect(word1, "\\d"),
+         !str_detect(word2, "\\d")) %>%
+  
+  # display graph
+  visualize_bigrams()
+
+# transform data to one-token-per-document-per-row
+clean.data2 <- scrape.data %>%
+  unnest_tokens(word, text)
+
+# count words co-occurring in web pages
+word_cors <- clean.data2 %>%
+  group_by(word) %>%
+  filter(n() >= 20) %>%
+  pairwise_cor(word,env_problems,  sort = TRUE)
+
+
+```
+
+#####
+
+
+```{r}
+# read in csv file as tibble/data frame
+scrape.data <- read.csv(file='Water_Report&News.csv', stringsAsFactors=FALSE)
+
+#scrape.data1 <- scrape.data[, c(1)]
+
+clean.data <- as_tibble(scrape.data)
+
+# remove list of non-stop words that are common and hold no semantic value
+other.words <- c("pm","slowest", "city", "press", "pieces", "only","exceed", "loading", "figure", "views", 
+                 "post", "information","monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
+
+# clean data
+clean.data <- 
+  clean.data$text %>%
+  removePunctuation() %>%
+  removeNumbers() %>%
+  tolower() %>%
+  removeWords(stopwords("SMART")) %>%
+  removeWords(other.words) %>%
+  stripWhitespace()
+
+# convert vector of scraped text to document term matrix using TM package
+scrape.dtm <- VCorpus(VectorSource(clean.data)) %>%
+  tm_map(stemDocument) %>%
+  tm_map(stripWhitespace) %>%
+  DocumentTermMatrix()
+scrape.dtm
+
+################
+
+```
+```{r}
+library(topicmodels)
+
+#######################################################################
+# examples using scraped data and chapter 6.1.1 of Text Mining with R
+#######################################################################
+
+# create a 2-topic LDA model and set seed so that output is predictable
+scrape.lda <- LDA(scrape.dtm, k = 2, control = list(seed = 1234))
+
+# explore
+scrape.lda
+
+# extract per topic word probabilities
+scrape.topics <- tidy(scrape.lda, matrix = "beta")
+
+# explore
+scrape.topics
+
+# organize data according to 'topic' for figure 6.2
+scrape.top.terms <- scrape.topics %>%
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+
+# vizualize top 2 topics and their top 10 terms
+# figure 6.2 in Text Mining with R
+scrape.top.terms %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  ggplot(aes(term, beta, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  coord_flip() +
+  scale_x_reordered()
+
+# calculate beta spread for figure 6.3
+beta.spread <- scrape.topics %>%
+  mutate(topic = paste0("topic", topic)) %>%
+  spread(topic, beta) %>%
+  filter(topic1 > .001 | topic2 > .001) %>%
+  mutate(log_ratio = log2(topic2 / topic1))
+
+# visualize words with greatest beta spread between 2 topics
+# figure 6.3 in Text Mining with R
+beta.spread %>%
+  group_by(direction = log_ratio > 0) %>%
+  top_n(10, abs(log_ratio)) %>%
+  ungroup() %>%
+  mutate(term = reorder(term, log_ratio)) %>%
+  ggplot(aes(term, log_ratio)) +
+  geom_col() +
+  labs(y = "Log2 ratio of beta in topic 2 / topic 1") +
+  coord_flip()
+
+```
+######
+
+
+```{r}
+###############################################################
+# decide number of topics intuitively or based on outside data
+###############################################################
+
+# reusing code from chapter 6.1.1 in Text Mining with R
+
+# set seed and select number of topics with 'k'
+scrape.lda <- LDA(scrape.dtm, k = 28, control = list(seed = 1234))
+
+# extract per topic word probabilities
+scrape.topics <- tidy(scrape.lda, matrix = "beta")
+
+# organize data according to 'topic'
+scrape.top.terms <- scrape.topics %>%
+  group_by(topic) %>%
+  top_n(5, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+
+# visualize top 5 terms for each topic
+scrape.top.terms %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  ggplot(aes(term, beta, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  coord_flip() +
+  scale_x_reordered()
+
+```
+####
+
+
